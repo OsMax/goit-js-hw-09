@@ -9,15 +9,18 @@ const btnStop = document.querySelector('[data-stop]');
 btnStop.disabled = true;
 let intervalId = null;
 
-btnStart.addEventListener('click', () => {
+btnStart.addEventListener('click', startInterval);
+btnStop.addEventListener('click', stopInterval);
+
+function startInterval() {
   intervalId = setInterval(() => {
     document.body.style.backgroundColor = getRandomHexColor();
   }, 1000);
   btnStart.disabled = true;
   btnStop.disabled = false;
-});
-btnStop.addEventListener('click', () => {
+}
+function stopInterval() {
   clearInterval(intervalId);
   btnStart.disabled = false;
   btnStop.disabled = true;
-});
+}
