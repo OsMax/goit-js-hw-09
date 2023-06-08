@@ -28,7 +28,7 @@ function letStartIt(e) {
   const step = Number(inputs.step.value);
   const amount = Number(inputs.amount.value);
 
-  for (i = 0; i < amount; i++) {
+  for (let i = 0; i < amount; i++) {
     createPromise(i + 1, step * i + delay)
       .then(({ position, delay }) => {
         // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
