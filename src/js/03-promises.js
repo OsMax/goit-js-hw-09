@@ -28,6 +28,9 @@ function letStartIt(e) {
   const step = Number(inputs.step.value);
   const amount = Number(inputs.amount.value);
 
+  if (!checkValues(delay, step, amount)) {
+    return;
+  }
   for (let i = 0; i < amount; i++) {
     createPromise(i + 1, step * i + delay)
       .then(({ position, delay }) => {
@@ -43,4 +46,21 @@ function letStartIt(e) {
         );
       });
   }
+}
+
+function checkValues(delay, step, amount) {
+  let check = true;
+  if (delay < 0) {
+    Notiflix.Notify.failure(`❌ ERROR!!! WRONG VALUE (${delay}) OF DELAY!!!`);
+    check = false;
+  }
+  if (step < 0) {
+    Notiflix.Notify.failure(`❌ ERROR!!! WRONG VALUE (${step}) OF STEP!!!`);
+    check = false;
+  }
+  if (amount <= 0) {
+    Notiflix.Notify.failure(`❌ ERROR!!! WRONG VALUE (${amount}) OF AMOUNT!!!`);
+    check = false;
+  }
+  return check;
 }
